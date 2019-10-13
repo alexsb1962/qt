@@ -42,11 +42,11 @@ class common():
 
 class Example(QWidget):
 
-    def __init__(self):
+    def __init__(self,common):
         super().__init__()
-        self.initUI()
+        self.initUI(common)
 
-    def initUI(self):
+    def initUI(self,common):
         self.setGeometry(common.mainrect)
         self.setWindowTitle('Points')
         self.show()
@@ -73,6 +73,7 @@ class Example(QWidget):
 
 
 class Worker(QThread):
+
     wid = None
 
     def __init__(self, Widget=None):
@@ -94,9 +95,15 @@ class Worker(QThread):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = Example()
 
+    # common класс для хранения настроек геометрии  
+    ex = Example(common)
+
+    # передаю ссылку на виджет через конструктор
     w = Worker(ex)
+    # а можно и так
+    w = Worker()
+    w.wid=ex
 
     w.start()
 
