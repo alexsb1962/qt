@@ -96,7 +96,7 @@ class Worker(QThread):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
 
-    # common класс для хранения настроек геометрии  
+    # common класс для хранения настроек геометрии   
     ex = Example(common)
 
     # передаю ссылку на виджет через конструктор
